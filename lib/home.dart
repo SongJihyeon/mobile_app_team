@@ -5,20 +5,20 @@ import 'package:intl/intl.dart';
 import 'Show.dart';
 import 'load_shows.dart';
 
-// class HomePage extends StatefulWidget {
-//   const HomePage({Key? key}) : super(key: key);
-//
-//   @override
-//   State<StatefulWidget> createState() => HomePageState();
-// }
 class HomePage extends StatefulWidget {
-  HomePage({required this.Shows});
-  final List<Show> Shows;
-  // const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  HomePageState createState() => HomePageState();
+  State<StatefulWidget> createState() => HomePageState();
 }
+// class HomePage extends StatefulWidget {
+//   HomePage({required this.Shows});
+//   final List<Show> Shows;
+//   // const HomePage({Key? key}) : super(key: key);
+//
+//   @override
+//   HomePageState createState() => HomePageState();
+// }
 
 class HomePageState extends State<HomePage>{
   int _selectedIndex = 0;
@@ -65,7 +65,7 @@ class HomePageState extends State<HomePage>{
           childAspectRatio: 8.0 / 9.0,
           // children: _buildGridCards(context),
           children: [
-            Text(widget.Shows[0].show_name),
+            Text(shows[0].show_name),
           ],
         ),
       ),
