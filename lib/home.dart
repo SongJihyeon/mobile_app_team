@@ -11,19 +11,11 @@ class HomePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => HomePageState();
 }
-// class HomePage extends StatefulWidget {
-//   HomePage({required this.Shows});
-//   final List<Show> Shows;
-//   // const HomePage({Key? key}) : super(key: key);
-//
-//   @override
-//   HomePageState createState() => HomePageState();
-// }
 
 class HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   void _onItemTapped(int index) {
     setState(() {
@@ -102,12 +94,12 @@ class HomePageState extends State<HomePage> {
                       ),
                     ),
                   ],
-            )
-                // child: Image.network(
-                //   shows[index].image.toString(),
-                //   // style: Theme.of(context).textTheme.bodyText1,
-                // ),
-                );
+                )
+              // child: Image.network(
+              //   shows[index].image.toString(),
+              //   // style: Theme.of(context).textTheme.bodyText1,
+              // ),
+            );
           }),
         ),
       ),

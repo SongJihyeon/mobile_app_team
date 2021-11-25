@@ -14,7 +14,10 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    ShowRepository().fetchShow();
+    // ShowRepository().fetchShow();
+    ShowRepository().fetchActor().then((value){
+      print(actors_set.length);
+    });
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
@@ -28,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
             Column(
               children: [
                 Container(
-                  child: RaisedButton(
+                  child: ElevatedButton(
                     onPressed: () async{
                       // signInWithGoogle();
                       Navigator.pop(context);
@@ -36,7 +39,9 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => HomePage()));
                     },
                     child:Text("GOOGLE"),
-                    color: Colors.redAccent[100],
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.redAccent[100],
+                    ),
                   ),
                 ),
               ],
@@ -45,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
             Column(
               children: [
                 Container(
-                  child: RaisedButton(
+                  child: ElevatedButton(
                     onPressed: () async{
                       // signInAnonymously();
                       // ShowRepository().fetchShow();
