@@ -7,7 +7,6 @@ import 'Show.dart';
 //데이터 string으로 받아오는 class
 class ShowRepository{
   Future<void> fetchShow() async{
-    // final url = 'http://www.kopis.or.kr/openApi/restful/pblprfr?service=1ba3eb65b2b14d78bc7f574ecc23f23bstdate=20160101&eddate=20160630&rows=10&cpage=1';
     final url = 'http://www.kopis.or.kr/openApi/restful/pblprfr?service=1ba3eb65b2b14d78bc7f574ecc23f23b&stdate=20211201&eddate=20220630&shcate=AAAB&rows=100&cpage=1';
     // print("url: $url");
 
@@ -36,5 +35,6 @@ class ShowRepository{
         shows.add(show);
       }
     }
+    // print(shows[9].show_name);
   }
 }

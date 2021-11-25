@@ -61,26 +61,17 @@ class HomePageState extends State<HomePage> {
         child: GridView.count(
           crossAxisCount: 2,
           padding: const EdgeInsets.all(16.0),
-          childAspectRatio: 8.0 / 16.0,
+          childAspectRatio: 8.0 / 15.0,
           // children: _buildGridCards(context),
           children: List.generate(100, (index) {
             return Center(
                 child: Column(
-              // children: [
-              //   Image.network(
-              //     shows[index].image.toString(),
-              //     // style: Theme.of(context).textTheme.bodyText1,
-              //   ),
-              //   Text(
-              //     shows[index].show_name.toString(),
-              //   ),
-              // ],
                   children: <Widget>[
                     AspectRatio(
-                      aspectRatio: 11 / 18,
+                      aspectRatio: 11 / 15,
                       child: Image.network(
                         shows[index].image.toString(),
-                        fit: BoxFit.fitWidth,
+                        fit: BoxFit.fitHeight,
                       ),
                     ),
                     Expanded(
@@ -89,15 +80,22 @@ class HomePageState extends State<HomePage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(
-                              shows[index].show_name.toString(),
-                              // style: theme.textTheme.headline6,
-                              maxLines: 1,
-                            ),
-                            const SizedBox(height: 8.0),
-                            Text(
-                              shows[index].stdate.toString(),
-                              // style: theme.textTheme.subtitle2,
+
+                            const SizedBox(height: 5.0),
+                            Center(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    shows[index].show_name.toString(),
+                                    // style: theme.textTheme.headline6,
+                                    maxLines: 1,
+                                  ),
+                                  Text(
+                                    shows[index].stdate.toString() + "\n~ " + shows[index].eddate.toString(),
+                                    // style: theme.textTheme.subtitle2,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
