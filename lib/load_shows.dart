@@ -15,7 +15,7 @@ class ShowRepository{
 
     if(response.statusCode == 200){
       final xml = response.body;
-      print("xml: $xml");
+      // print("xml: $xml");
 
       final xml2json = Xml2Json()..parse(xml); //json으로 변환
       final json = xml2json.toParker();
