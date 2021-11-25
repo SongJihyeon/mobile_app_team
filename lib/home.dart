@@ -20,16 +20,17 @@ class HomePage extends StatefulWidget {
 //   HomePageState createState() => HomePageState();
 // }
 
-class HomePageState extends State<HomePage>{
+class HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
-  void _onItemTapped(int index){
+  void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
+
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
       'Index 0: menu',
@@ -53,24 +54,62 @@ class HomePageState extends State<HomePage>{
     ),
   ];
 
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Center(
         child: GridView.count(
           crossAxisCount: 2,
           padding: const EdgeInsets.all(16.0),
-          childAspectRatio: 8.0 / 9.0,
+          childAspectRatio: 8.0 / 16.0,
           // children: _buildGridCards(context),
           children: List.generate(100, (index) {
             return Center(
-              child: Image.network(
-                shows[index].image.toString(),
-                // style: Theme.of(context).textTheme.bodyText1,
-              ),
-            );
+                child: Column(
+              // children: [
+              //   Image.network(
+              //     shows[index].image.toString(),
+              //     // style: Theme.of(context).textTheme.bodyText1,
+              //   ),
+              //   Text(
+              //     shows[index].show_name.toString(),
+              //   ),
+              // ],
+                  children: <Widget>[
+                    AspectRatio(
+                      aspectRatio: 11 / 18,
+                      child: Image.network(
+                        shows[index].image.toString(),
+                        fit: BoxFit.fitWidth,
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              shows[index].show_name.toString(),
+                              // style: theme.textTheme.headline6,
+                              maxLines: 1,
+                            ),
+                            const SizedBox(height: 8.0),
+                            Text(
+                              shows[index].stdate.toString(),
+                              // style: theme.textTheme.subtitle2,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+            )
+                // child: Image.network(
+                //   shows[index].image.toString(),
+                //   // style: Theme.of(context).textTheme.bodyText1,
+                // ),
+                );
           }),
         ),
       ),
@@ -81,27 +120,27 @@ class HomePageState extends State<HomePage>{
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.menu),
-            label:'menu',
+            label: 'menu',
             // backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label:'search',
+            label: 'search',
             //backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label:'home',
+            label: 'home',
             // backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite_border),
-            label:'favorite',
+            label: 'favorite',
             //  backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.perm_identity_outlined),
-            label:'profile',
+            label: 'profile',
             backgroundColor: Colors.blue,
           ),
         ],
@@ -109,7 +148,6 @@ class HomePageState extends State<HomePage>{
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
         //showSelectedLabels: false,
-
       ),
       resizeToAvoidBottomInset: false,
     );
