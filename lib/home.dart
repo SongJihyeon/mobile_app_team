@@ -11,14 +11,6 @@ class HomePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => HomePageState();
 }
-// class HomePage extends StatefulWidget {
-//   HomePage({required this.Shows});
-//   final List<Show> Shows;
-//   // const HomePage({Key? key}) : super(key: key);
-//
-//   @override
-//   HomePageState createState() => HomePageState();
-// }
 
 class HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
