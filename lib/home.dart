@@ -64,9 +64,14 @@ class HomePageState extends State<HomePage>{
           padding: const EdgeInsets.all(16.0),
           childAspectRatio: 8.0 / 9.0,
           // children: _buildGridCards(context),
-          children: [
-            Text(shows[0].show_name),
-          ],
+          children: List.generate(100, (index) {
+            return Center(
+              child: Image.network(
+                shows[index].image.toString(),
+                // style: Theme.of(context).textTheme.bodyText1,
+              ),
+            );
+          }),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
