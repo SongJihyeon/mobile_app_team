@@ -39,6 +39,8 @@ class ShowRepository{
     // print(shows[9].show_name);
   }
   Future<void> fetchActor() async{
+
+
     await fetchShow();
     for(int i=0; i<100; i++){
       String id = shows[i].id;
