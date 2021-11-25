@@ -71,13 +71,10 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
 
-
-
-
     ShowRepository().fetchActor().then((value){
       print(actors_set.length);
     });
-
+    
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -94,7 +91,6 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
 
 class GoogleButton extends StatefulWidget{
   const GoogleButton({Key? key}) : super(key: key);
