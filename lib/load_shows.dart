@@ -8,7 +8,6 @@ var actors_set = {''};
 class ShowRepository{
   Future<void> fetchShow() async{
     var url = Uri.parse('http://www.kopis.or.kr/openApi/restful/pblprfr?service=1ba3eb65b2b14d78bc7f574ecc23f23b&stdate=20211201&eddate=20220630&shcate=AAAB&rows=100&cpage=1');
-    // final url = 'http://www.kopis.or.kr/openApi/restful/pblprfr?service=1ba3eb65b2b14d78bc7f574ecc23f23b&stdate=20211201&eddate=20220630&shcate=AAAB&rows=100&cpage=1';
     // print("url: $url");
 
     final response = await http.get(url);
@@ -37,6 +36,7 @@ class ShowRepository{
         shows.add(show);
       }
     }
+    // print(shows[9].show_name);
   }
   Future<void> fetchActor() async{
     await fetchShow();

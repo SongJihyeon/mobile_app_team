@@ -1,3 +1,3 @@
 # team_project
 
-A new Flutter project.
+공연 정보 제공 어플리케이션
