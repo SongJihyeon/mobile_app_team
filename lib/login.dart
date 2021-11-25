@@ -32,8 +32,8 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () async{
                       // signInWithGoogle();
                       Navigator.pop(context);
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage(Shows: shows)));
-                      // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+                      // Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage(Shows: shows)));
+                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => HomePage()));
                     },
                     child:Text("GOOGLE"),
                     color: Colors.redAccent[100],
@@ -50,8 +50,8 @@ class _LoginPageState extends State<LoginPage> {
                       // signInAnonymously();
                       // ShowRepository().fetchShow();
                       Navigator.pop(context);
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage(Shows: shows)));
-                      // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+                      // Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage(Shows: shows)));
+                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => HomePage()));
                     },
                     child:Text("GUEST"),
                   ),
