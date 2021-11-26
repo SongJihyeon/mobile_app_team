@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'home.dart';
 import 'login.dart';
 
-// TODO: Convert ShrineApp to stateful widget (104)
 class ShowApp extends StatelessWidget {
   const ShowApp({Key? key}) : super(key: key);
 

@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import 'Show.dart';
-import 'load_shows.dart';
+import 'date.dart';
+import 'favorite.dart';
+import 'profile.dart';
+import 'search.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,17 +13,9 @@ class HomePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => HomePageState();
 }
-// class HomePage extends StatefulWidget {
-//   HomePage({required this.Shows});
-//   final List<Show> Shows;
-//   // const HomePage({Key? key}) : super(key: key);
-//
-//   @override
-//   HomePageState createState() => HomePageState();
-// }
 
 class HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 2;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
@@ -31,86 +25,11 @@ class HomePageState extends State<HomePage> {
     });
   }
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: menu',
-      //  style: optionStyle,
-    ),
-    Text(
-      'Index 1: search',
-      //  style: optionStyle,
-    ),
-    Text(
-      'Index 2: home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: favorite',
-      // style: optionStyle,
-    ),
-    Text(
-      'Index 4: profile',
-      // style: optionStyle,
-    ),
-  ];
+  final List<Widget> _widgetOptions = <Widget>[ DatePage(), SearchPage(), ShowHome(), FavoritePage(), ProfilePage()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: GridView.count(
-          crossAxisCount: 2,
-          padding: const EdgeInsets.all(16.0),
-          childAspectRatio: 8.0 / 15.0,
-          // children: _buildGridCards(context),
-          children: List.generate(100, (index) {
-            return Center(
-                child: Column(
-                  children: <Widget>[
-                    AspectRatio(
-                      aspectRatio: 11 / 15,
-                      child: Image.network(
-                        shows[index].image.toString(),
-                        fit: BoxFit.fitHeight,
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-
-                            const SizedBox(height: 5.0),
-                            Center(
-                              child: Column(
-                                children: [
-                                  Text(
-                                    shows[index].show_name.toString(),
-                                    // style: theme.textTheme.headline6,
-                                    maxLines: 1,
-                                  ),
-                                  Text(
-                                    shows[index].stdate.toString() + "\n~ " + shows[index].eddate.toString(),
-                                    // style: theme.textTheme.subtitle2,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                )
-              // child: Image.network(
-              //   shows[index].image.toString(),
-              //   // style: Theme.of(context).textTheme.bodyText1,
-              // ),
-            );
-          }),
-        ),
-      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Color(0xFFA5E1F2),
@@ -147,7 +66,71 @@ class HomePageState extends State<HomePage> {
         onTap: _onItemTapped,
         //showSelectedLabels: false,
       ),
+
+     body: _widgetOptions.elementAt(_selectedIndex),
       resizeToAvoidBottomInset: false,
     );
   }
+}
+
+
+class ShowHome extends StatefulWidget{
+  const ShowHome({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => ShowHomeState();
+
+}
+
+class ShowHomeState extends State<ShowHome>{
+  @override
+  Widget build(BuildContext context) {
+    return  Center(
+        child: GridView.count(
+          crossAxisCount: 2,
+          padding: const EdgeInsets.all(16.0),
+          childAspectRatio: 8.0 / 15.0,
+          children: List.generate(100, (index) {
+            return Center(
+                child: Column(
+                  children: <Widget>[
+                    AspectRatio(
+                      aspectRatio: 11 / 15,
+                      child: Image.network(
+                        shows[index].image.toString(),
+                        fit: BoxFit.fitHeight,
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            const SizedBox(height: 5.0),
+                            Center(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    shows[index].show_name.toString(),
+                                    maxLines: 1,
+                                  ),
+                                  Text(
+                                    shows[index].stdate.toString() + "\n~ " + shows[index].eddate.toString(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+            );
+          }),
+        ),
+    );
+  }
+
 }
