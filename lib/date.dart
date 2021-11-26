@@ -2,6 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'Show.dart';
 
+// List<Show> shows_sort = shows.sort((a,b){
+//   var adate = a.stdate;
+//   var bdate = b.stdate;
+//   return adate.compareTo(bdate);
+// });
+
 class DatePage extends StatefulWidget{
   const DatePage({Key? key}) : super(key: key);
 
