@@ -24,7 +24,7 @@ class HomePageState extends State<HomePage> {
       _selectedIndex = index;
     });
   }
-  
+
   final List<Widget> _widgetOptions = <Widget>[ DatePage(), SearchPage(), ShowHome(), FavoritePage(), ProfilePage()];
 
   @override
@@ -63,11 +63,11 @@ class HomePageState extends State<HomePage> {
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
+        onTap: onItemTapped,
         //showSelectedLabels: false,
       ),
 
-     body: _widgetOptions.elementAt(_selectedIndex),
+      body: _widgetOptions.elementAt(_selectedIndex),
       resizeToAvoidBottomInset: false,
     );
   }
@@ -86,50 +86,50 @@ class ShowHomeState extends State<ShowHome>{
   @override
   Widget build(BuildContext context) {
     return  Center(
-        child: GridView.count(
-          crossAxisCount: 2,
-          padding: const EdgeInsets.all(16.0),
-          childAspectRatio: 8.0 / 15.0,
-          children: List.generate(100, (index) {
-            return Center(
-                child: Column(
-                  children: <Widget>[
-                    AspectRatio(
-                      aspectRatio: 11 / 15,
-                      child: Image.network(
-                        shows[index].image.toString(),
-                        fit: BoxFit.fitHeight,
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            const SizedBox(height: 5.0),
-                            Center(
-                              child: Column(
-                                children: [
-                                  Text(
-                                    shows[index].show_name.toString(),
-                                    maxLines: 1,
-                                  ),
-                                  Text(
-                                    shows[index].stdate.toString() + "\n~ " + shows[index].eddate.toString(),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+      child: GridView.count(
+        crossAxisCount: 2,
+        padding: const EdgeInsets.all(16.0),
+        childAspectRatio: 8.0 / 15.0,
+        children: List.generate(100, (index) {
+          return Center(
+            child: Column(
+              children: <Widget>[
+                AspectRatio(
+                  aspectRatio: 11 / 15,
+                  child: Image.network(
+                    shows[index].image.toString(),
+                    fit: BoxFit.fitHeight,
+                  ),
                 ),
-            );
-          }),
-        ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        const SizedBox(height: 5.0),
+                        Center(
+                          child: Column(
+                            children: [
+                              Text(
+                                shows[index].show_name.toString(),
+                                maxLines: 1,
+                              ),
+                              Text(
+                                shows[index].stdate.toString() + "\n~ " + shows[index].eddate.toString(),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }),
+      ),
     );
   }
 
