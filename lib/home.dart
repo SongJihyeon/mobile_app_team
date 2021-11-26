@@ -37,7 +37,7 @@ class HomePageState extends State<HomePage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.menu),
-            label: 'menu',
+            label: 'date',
             // backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
