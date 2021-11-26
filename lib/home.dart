@@ -19,12 +19,12 @@ class HomePageState extends State<HomePage> {
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
-  void _onItemTapped(int index) {
+  void onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
-
+  
   final List<Widget> _widgetOptions = <Widget>[ DatePage(), SearchPage(), ShowHome(), FavoritePage(), ProfilePage()];
 
   @override
