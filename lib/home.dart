@@ -25,7 +25,7 @@ class HomePageState extends State<HomePage> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
-      'Index 0: menu',
+      'Index 0: date',
       //  style: optionStyle,
     ),
     Text(
@@ -110,7 +110,7 @@ class HomePageState extends State<HomePage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.menu),
-            label: 'menu',
+            label: 'date',
             // backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
