@@ -71,19 +71,17 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
 
-    ShowRepository().fetchActor().then((value){
-      print(actors_set.length);
-    });
+    ShowRepository().fetchActor();
     
     return Scaffold(
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          children: <Widget>[
-            const SizedBox(height: 80.0),
-            const SizedBox(height: 120.0),
+          children: const <Widget>[
+            SizedBox(height: 80.0),
+            SizedBox(height: 120.0),
             GoogleButton(),
-            const SizedBox(height: 5.0),
+            SizedBox(height: 5.0),
             AnonymousSigninButton(),
           ],
         ),
