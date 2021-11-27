@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 import 'Show.dart';
 import 'date.dart';
@@ -79,57 +81,86 @@ class ShowHome extends StatefulWidget{
 
   @override
   State<StatefulWidget> createState() => ShowHomeState();
-
 }
 
 class ShowHomeState extends State<ShowHome>{
   @override
   Widget build(BuildContext context) {
-    return  Center(
-      child: GridView.count(
-        crossAxisCount: 2,
-        padding: const EdgeInsets.all(16.0),
-        childAspectRatio: 8.0 / 15.0,
-        children: List.generate(100, (index) {
-          return Center(
-            child: Column(
-              children: <Widget>[
-                AspectRatio(
-                  aspectRatio: 11 / 15,
-                  child: Image.network(
-                    shows[index].image.toString(),
-                    fit: BoxFit.fitHeight,
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
+    return ListView(
+        children: <Widget>[
+           Container(
+             height: 200,
+             child: Swiper(
+                 itemHeight: 20,
+                 pagination: SwiperPagination(),
+                 itemCount: 3,
+                 itemBuilder: (BuildContext context, int index){
+                   return Image.network(
+                     shows[index].image.toString(),
+                     fit: BoxFit.fitWidth,
+                   );
+                 },
+             ),
+           ),
+
+            Container(
+            height: 700,
+              child: Center(
+                child: GridView.count(
+                crossAxisCount: 2,
+                padding: const EdgeInsets.all(6.0),
+                childAspectRatio: 8.0 / 15.0,
+                children: List.generate(100, (index) {
+                  return Center(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        const SizedBox(height: 5.0),
-                        Center(
-                          child: Column(
-                            children: [
-                              Text(
-                                shows[index].show_name.toString(),
-                                maxLines: 1,
+                        Padding(
+                          padding: const EdgeInsets.all(6.0),
+                              child: AspectRatio(
+                                aspectRatio: 11 / 15,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(25),
+                                child: Image.network(
+                                  shows[index].image.toString(),
+                                  fit: BoxFit.fitWidth,
+                                  ),
+                                ),
                               ),
-                              Text(
-                                shows[index].stdate.toString() + "\n~ " + shows[index].eddate.toString(),
-                              ),
-                            ],
-                          ),
                         ),
+
+                        Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Center(
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        shows[index].show_name.toString(),
+                                        maxLines: 1,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 17,
+                                        ),
+                                      ),
+                                      Text(
+                                        shows[index].stdate.toString() + "\n~ " + shows[index].eddate.toString(),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                       ],
                     ),
-                  ),
-                ),
-              ],
+                  );
+                }),
+              ),
+              ),
             ),
-          );
-        }),
-      ),
+        ],
     );
   }
 
