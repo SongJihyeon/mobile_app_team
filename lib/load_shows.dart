@@ -33,6 +33,7 @@ class ShowRepository{
           actors: json1['prfcast'],
           like: [""],
           image: json1['poster'],
+          center: json1['fcltynm'],
         );
         Shows.add(show);
       }

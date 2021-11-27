@@ -8,6 +8,7 @@ class Show {
   List<String> actors;
   List<String> like;
   String image;
+  String center;
 
   Show({
     required this.id,
@@ -18,6 +19,7 @@ class Show {
     required this.actors,
     required this.like,
     required this.image,
+    required this.center,
   });
 }
 
