@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-
+    // ShowRepository().fetchShow();
     ShowRepository().fetchActor();
     
     return Scaffold(

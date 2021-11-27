@@ -7,6 +7,7 @@ var actors_set = {''};
 //데이터 string으로 받아오는 class
 class ShowRepository{
   Future<void> fetchShow() async{
+    var Shows = <Show>[];
     var url = Uri.parse('http://www.kopis.or.kr/openApi/restful/pblprfr?service=1ba3eb65b2b14d78bc7f574ecc23f23b&stdate=20211201&eddate=20220630&shcate=AAAB&rows=100&cpage=1');
     // print("url: $url");
 
@@ -33,13 +34,15 @@ class ShowRepository{
           like: [""],
           image: json1['poster'],
         );
-        shows.add(show);
+        Shows.add(show);
       }
     }
-    // print(shows[9].show_name);
+    shows = Shows;
+    print(shows.length);
   }
   
   Future<void> fetchActor() async{
+    actors_set = {''};
     await fetchShow();
     for(int i=0; i<100; i++){
         String id = shows[i].id;
