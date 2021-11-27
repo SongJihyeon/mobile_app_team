@@ -5,6 +5,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 
 import 'Show.dart';
 import 'date.dart';
+import 'detail.dart';
 import 'favorite.dart';
 import 'profile.dart';
 import 'search.dart';
@@ -19,7 +20,7 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   int _selectedIndex = 2;
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  TextStyle(fontSize: 35, fontWeight: FontWeight.bold);
 
   void onItemTapped(int index) {
     setState(() {
@@ -40,22 +41,18 @@ class HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.menu),
             label: 'date',
-            // backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
             label: 'search',
-            //backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'home',
-            // backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite_border),
             label: 'favorite',
-            //  backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.perm_identity_outlined),
@@ -66,7 +63,6 @@ class HomePageState extends State<HomePage> {
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
         onTap: onItemTapped,
-        //showSelectedLabels: false,
       ),
 
       body: _widgetOptions.elementAt(_selectedIndex),
@@ -74,7 +70,6 @@ class HomePageState extends State<HomePage> {
     );
   }
 }
-
 
 class ShowHome extends StatefulWidget{
   const ShowHome({Key? key}) : super(key: key);
@@ -97,12 +92,11 @@ class ShowHomeState extends State<ShowHome>{
                  itemBuilder: (BuildContext context, int index){
                    return Image.network(
                      shows[index].image.toString(),
-                     fit: BoxFit.fitWidth,
+                     fit: BoxFit.fill,
                    );
                  },
              ),
            ),
-
             Container(
             height: 700,
               child: Center(
@@ -111,21 +105,32 @@ class ShowHomeState extends State<ShowHome>{
                 padding: const EdgeInsets.all(6.0),
                 childAspectRatio: 8.0 / 15.0,
                 children: List.generate(100, (index) {
-                  return Center(
+                  return
+                    GestureDetector(
+                      child: Center(
                     child: Column(
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.all(6.0),
-                              child: AspectRatio(
+                             // child: GestureDetector(
+                              child:
+                              Hero(
+                                tag: shows[index].id,
+                                child: AspectRatio(
                                 aspectRatio: 11 / 15,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(25),
-                                child: Image.network(
+                                  child: Image.network(
                                   shows[index].image.toString(),
                                   fit: BoxFit.fitWidth,
-                                  ),
                                 ),
-                              ),
+                            ),
+                          ),
+                          ),
+                          // onTap: (){
+                          //   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => DetailPage()));
+                          // },
+                       // ),
                         ),
 
                         Padding(
@@ -138,7 +143,8 @@ class ShowHomeState extends State<ShowHome>{
                                     children: [
                                       Text(
                                         shows[index].show_name.toString(),
-                                        maxLines: 1,
+                                        textAlign: TextAlign.left,
+                                        maxLines: 2,
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 17,
@@ -153,8 +159,12 @@ class ShowHomeState extends State<ShowHome>{
                               ],
                             ),
                           ),
-                      ],
+                        ],
+                      ),
                     ),
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => DetailPage(index: shows.indexOf(shows[index]))));
+                    },
                   );
                 }),
               ),
