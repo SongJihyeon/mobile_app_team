@@ -21,4 +21,4 @@ class Show {
   });
 }
 
-final shows = <Show>[];
+var shows = <Show>[];
