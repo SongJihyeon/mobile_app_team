@@ -16,7 +16,7 @@ class SearchPageState extends State<SearchPage>{
 
       appBar: AppBar(
         title: Text(
-          'Favorite',
+          'Search',
         ),
         automaticallyImplyLeading: false,
       ),

@@ -38,7 +38,7 @@ class ShowRepository{
       }
     }
     shows = Shows;
-    print(shows.length);
+    // print(shows.length);
   }
   
   Future<void> fetchActor() async{
@@ -63,5 +63,6 @@ class ShowRepository{
           }
         }
       }
+    // print(actors_set.length);
   }
 }
