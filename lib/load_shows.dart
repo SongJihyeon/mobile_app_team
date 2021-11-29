@@ -59,11 +59,14 @@ class ShowRepository{
           if(actors != null){
             List<String> split_actors = actors.split(', ');
             shows[i].actors = split_actors;
-            for(int j=0; j<split_actors.length; j++)
+            for(int j=0; j<split_actors.length; j++){
+              split_actors[j] = split_actors[j].replaceAll(' 등', '');
               actors_set.add(split_actors[j]);
+            }
           }
         }
       }
+    actors_set.remove('');
     // print(actors_set.length);
   }
 }
