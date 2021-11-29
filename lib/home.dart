@@ -97,7 +97,7 @@ class ShowHomeState extends State<ShowHome>{
                  },
              ),
            ),
-            Container(
+          Container(
             height: 700,
               child: Center(
                 child: GridView.count(
@@ -105,16 +105,14 @@ class ShowHomeState extends State<ShowHome>{
                 padding: const EdgeInsets.all(6.0),
                 childAspectRatio: 8.0 / 15.0,
                 children: List.generate(100, (index) {
-                  return
-                    GestureDetector(
+                  return GestureDetector(
                       child: Center(
                     child: Column(
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.all(6.0),
                              // child: GestureDetector(
-                              child:
-                              Hero(
+                              child: Hero(
                                 tag: shows[index].id,
                                 child: AspectRatio(
                                 aspectRatio: 11 / 15,
@@ -124,15 +122,14 @@ class ShowHomeState extends State<ShowHome>{
                                   shows[index].image.toString(),
                                   fit: BoxFit.fitWidth,
                                 ),
+                              ),
                             ),
-                          ),
-                          ),
+                        ),
                           // onTap: (){
                           //   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => DetailPage()));
                           // },
-                       // ),
+                          //),
                         ),
-
                         Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Column(
