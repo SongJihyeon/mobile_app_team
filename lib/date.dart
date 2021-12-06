@@ -47,7 +47,7 @@ class DatePageState extends State<DatePage>{
                    Text(shows_sort[index].stdate + " ~"),
                    SizedBox(width: 20),
                    SizedBox(
-                     width: 250,
+                     width: 230,
                      child: Column(
                        mainAxisAlignment: MainAxisAlignment.center,
                        crossAxisAlignment: CrossAxisAlignment.start,
