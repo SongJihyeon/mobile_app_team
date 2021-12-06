@@ -9,7 +9,6 @@ class FavoritePage extends StatefulWidget{
 
   @override
   State<StatefulWidget> createState() => FavoritePageState();
-
 }
 
 class FavoritePageState extends State<FavoritePage>{
@@ -17,6 +16,7 @@ class FavoritePageState extends State<FavoritePage>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+
         title: Text(
           'Favorite',
         ),
@@ -31,7 +31,7 @@ class FavoritePageState extends State<FavoritePage>{
         return Card(
             child: Container(
               color: Color(0xFFB9F7FF),
-              padding: EdgeInsets.all(12),
+              padding: EdgeInsets.all(6),
               child: Column(
                 children: <Widget>[
                  Container(
