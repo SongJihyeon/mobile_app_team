@@ -1,6 +1,17 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
 import 'load_shows.dart';
+
+
+List<String> favorite_actors = [];
+List<String> favorite_show = [];
+
 
 class Search extends SearchDelegate {
   @override
@@ -26,25 +37,51 @@ class Search extends SearchDelegate {
   }
 
   String selectedResult = "";
+  int index_selected = 0;
   @override
   Widget buildResults(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(height: 80),
-        SizedBox(width: 10),
-        SizedBox(
-          width: 230,
-          child: Text(selectedResult),
-        ),
-        // SizedBox(width: 260),
-        IconButton(
-          icon: Icon(Icons.favorite_border),
-          color: Colors.red,
-          onPressed: () {},
-        ),
-      ],
-    );
+    return StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: 80),
+              SizedBox(width: 10),
+              SizedBox(
+                width: 230,
+                child: Text(selectedResult),
+              ),
+              // SizedBox(width: 260),
+              IconButton(
+                icon: index_selected == 1? Icon(Icons.favorite) : Icon(Icons.favorite_border),
+                color: Colors.red,
+                onPressed: () {
+                  setState((){
+                  if(index_selected == 1){
+                    index_selected = 0;
+                    favorite_actors.remove(selectedResult);
+                    FirebaseFirestore.instance.collection('user').doc(FirebaseAuth.instance.currentUser!.uid).set({
+                      'uid' : FirebaseAuth.instance.currentUser!.uid,
+                      'actor': favorite_actors,
+                      'show': favorite_show,
+                    });
+                  }
+                  else{
+                    index_selected = 1;
+                    favorite_actors.add(selectedResult);
+                  }
+                  FirebaseFirestore.instance.collection('user').doc(FirebaseAuth.instance.currentUser!.uid).set({
+                    'uid' : FirebaseAuth.instance.currentUser!.uid,
+                    'actor': favorite_actors,
+                    'show': favorite_show,
+                  });
+                  });
+
+                },
+              ),
+            ],
+          );
+        });
   }
 
   List<String> recentList = [];
@@ -69,6 +106,7 @@ class Search extends SearchDelegate {
           leading: query.isEmpty ? Icon(Icons.access_time) : SizedBox(),
           onTap: () {
             selectedResult = suggestionList[index];
+            index_selected = index;
             showResults(context);
           },
         );
@@ -118,9 +156,29 @@ class SearchPageState extends State<SearchPage> {
                     ),
                     // SizedBox(width: 260),
                     IconButton(
-                      icon: Icon(Icons.favorite_border),
+                      icon: actor_index[index] == 1? Icon(Icons.favorite) : Icon(Icons.favorite_border),
                       color: Colors.red,
                       onPressed: () {
+                        setState((){
+                          if(actor_index[index] == 1){
+                            actor_index[index] = 0;
+                            favorite_actors.remove(actors_set.toList()[index]);
+                            FirebaseFirestore.instance.collection('user').doc(FirebaseAuth.instance.currentUser!.uid).set({
+                              'uid' : FirebaseAuth.instance.currentUser!.uid,
+                              'actor': favorite_actors,
+                              'show': favorite_show,
+                            });
+                          }
+                          else{
+                            actor_index[index] = 1;
+                            favorite_actors.add(actors_set.toList()[index]);
+                          }
+                          FirebaseFirestore.instance.collection('user').doc(FirebaseAuth.instance.currentUser!.uid).set({
+                            'uid' : FirebaseAuth.instance.currentUser!.uid,
+                            'actor': favorite_actors,
+                            'show': favorite_show,
+                          });
+                        });
 
                       },
                     ),
