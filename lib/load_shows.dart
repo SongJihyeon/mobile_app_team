@@ -4,6 +4,7 @@ import 'dart:convert' as convert;
 import 'Show.dart';
 
 var actors_set = {''};
+var actor_index = [];
 //데이터 string으로 받아오는 class
 class ShowRepository{
   Future<void> fetchShow() async{
@@ -67,6 +68,7 @@ class ShowRepository{
             for(int j=0; j<split_actors.length; j++){
               split_actors[j] = split_actors[j].replaceAll(' 등', '');
               actors_set.add(split_actors[j]);
+              actor_index.add(0);
             }
           }
         }
