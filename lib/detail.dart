@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'dart:async';
 import 'Show.dart';
 import 'googlemap.dart';
+import '';
 
 class DetailPage extends StatelessWidget{
 
@@ -85,8 +86,9 @@ class DetailPage extends StatelessWidget{
                      children: [
                        Review(
                          addMessage: (String message) =>
-                              appState.addMessageToReview(message),
-                         messages: appState.reviewMessages
+                              appState.addMessageToReview(message,showlist.show_name),
+                         messages: appState.reviewMessages,
+                         show: shows.indexOf(shows[index]),
                        ),
                      ],
                    ),
@@ -105,22 +107,25 @@ class DetailPage extends StatelessWidget{
 }
 
 class ReviewMessage{
-  ReviewMessage({required this.name, required this.message, required this.userid, required this.document});
+  ReviewMessage({required this.name, required this.message, required this.userid, required this.document, required this.showname});
   final String name;
   final String message;
   final String userid;
   final String document;
+  final String showname;
 }
 
 
 class Review extends StatefulWidget{
-  Review({required this.addMessage, required this.messages});
+  Review({required this.addMessage, required this.messages, required this.show});
   final FutureOr<void> Function(String message) addMessage;
   final List<ReviewMessage> messages;
+  //final List<Show> show = [];
+  // final int index;
+  int show;
 
   @override
   State<StatefulWidget> createState() => _ReviewState();
-
 }
 
 class _ReviewState extends State<Review>{
@@ -129,6 +134,8 @@ class _ReviewState extends State<Review>{
 
   @override
   Widget build(BuildContext context) {
+    var showlist = shows[widget.show].show_name;
+
    return Column(
      crossAxisAlignment: CrossAxisAlignment.start,
      children: [
@@ -175,36 +182,35 @@ class _ReviewState extends State<Review>{
 
        SizedBox(height: 8),
        for(var message in widget.messages)
-         Container(
-           child: Row(
-             children: [
-               Expanded(child: Paragraph('${message.name} : ${message.message} \n ${DateTime.now()}'),),
-              SizedBox(width: 80),
-               if(FirebaseAuth.instance.currentUser!.uid == message.userid)
-                 IconButton(
-                  icon: Icon(Icons.delete_outline),
-                   onPressed: () async {
-                    await FirebaseFirestore.instance
-                        .collection('review')
-                        .doc(message.document).delete();
-                  },
-                 ),
-             ],
-           ),
-         ),
+           if(message.showname.toString().compareTo(showlist.toString()) == 0)
+             Container(
+               child: Row(
+                 children: [
+                     Expanded(
+                       child: Paragraph('${message.name} : ${message.message} \n ${DateTime.now()}'),),
+                     SizedBox(width: 80),
+                     if(FirebaseAuth.instance.currentUser!.uid == message.userid)
+                       IconButton(
+                         icon: Icon(Icons.delete_outline),
+                         onPressed: () async {
+                           await FirebaseFirestore.instance
+                               .collection('review')
+                               .doc(message.document).delete();
+                         },
+                       ),
+                 ],
+               ),
+             ),
+
        SizedBox(height: 8),
      ],
    );
 
-
-
   }
 }
 
+
 /// firebase ///
-
-
-
 class ApplicationState extends ChangeNotifier{
   ApplicationState(){
     init();
@@ -214,7 +220,6 @@ class ApplicationState extends ChangeNotifier{
     await Firebase.initializeApp();
 
     FirebaseAuth.instance.userChanges().listen((user){
-
       if(user != null){
         _reviewSubscription = FirebaseFirestore.instance.collection('review')
             .orderBy('timestamp', descending: true)
@@ -224,33 +229,34 @@ class ApplicationState extends ChangeNotifier{
           snapshot.docs.forEach((document) {
             _reviewMessages.add(
               ReviewMessage(
-                  name: document.data()['name'] as String,
-                  message: document.data()['text'] as String,
-                  userid: document.data()['userId'] as String,
-                  document: document.id,
+                name: document.data()['name'] as String,
+                message: document.data()['text'] as String,
+                userid: document.data()['userId'] as String,
+                document: document.id,
+                showname: document.data()['showname'] as String,
               ),
             );
           });
           notifyListeners();
         });
-
       }
-
-
-
     });
   }
 
   StreamSubscription<QuerySnapshot>? _reviewSubscription;
   List<ReviewMessage> _reviewMessages = [];
   List<ReviewMessage> get reviewMessages => _reviewMessages;
+  // List<Show> show = [];
+  // List<Show> get showinfo => show;
 
-  Future<DocumentReference> addMessageToReview(String message){
+
+  Future<DocumentReference> addMessageToReview(String message, String showname){
     return FirebaseFirestore.instance.collection('review').add(<String, dynamic>{
       'text': message,
       'timestamp': DateTime.now().millisecondsSinceEpoch,
       'name' : FirebaseAuth.instance.currentUser!.displayName == null ? '익명' : FirebaseAuth.instance.currentUser!.displayName,
       'userId' : FirebaseAuth.instance.currentUser!.uid,
+      'showname': showname as String,
     });
   }
 

@@ -125,10 +125,7 @@ class ShowHomeState extends State<ShowHome>{
                               ),
                             ),
                         ),
-                          // onTap: (){
-                          //   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => DetailPage()));
-                          // },
-                          //),
+
                         ),
                         Padding(
                             padding: const EdgeInsets.all(5.0),
