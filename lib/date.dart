@@ -37,7 +37,7 @@ class DatePageState extends State<DatePage>{
                    Radius.circular(10),
                  ),
                  border: Border.all(
-                   color: Color(0xFFA5E1F2),
+                   color: Color(0xFFD2D2FF),
                    width: 2,
                  ),
                ),
