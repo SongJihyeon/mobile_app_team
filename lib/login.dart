@@ -72,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     // ShowRepository().fetchShow();
     ShowRepository().fetchloaction();
-
+    
     return Scaffold(
       body: SafeArea(
         child: ListView(

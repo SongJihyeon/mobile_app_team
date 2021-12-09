@@ -74,7 +74,7 @@ class DetailPage extends StatelessWidget{
                  TextButton(
                    child: Text('공연장소 지도보기',style: TextStyle(fontSize: 18)),
                    onPressed: () {
-                     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Googlemap()));
+                     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Googlemap(index: index,)));
                    }
                  ),
                  Divider(height: 3),

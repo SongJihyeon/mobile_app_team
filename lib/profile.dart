@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
+
 class ProfilePage extends StatefulWidget{
   const ProfilePage({Key? key}) : super(key: key);
   @override
@@ -18,6 +19,20 @@ class ProfilePageState extends State<ProfilePage>{
         automaticallyImplyLeading: false,
         title: Text('My Page', style: TextStyle(color:Colors.black)),
         backgroundColor: Color(0xFFA9E6D2),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(
+              Icons.exit_to_app,
+              semanticLabel: 'logout',
+              color: Colors.green,
+            ),
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+              Navigator.pop(context);
+              Navigator.pushNamed(context, '/login');
+            },
+          ),
+        ],
       ),
 
       body: Container(
