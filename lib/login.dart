@@ -74,12 +74,14 @@ class _LoginPageState extends State<LoginPage> {
     ShowRepository().fetchloaction();
     
     return Scaffold(
+      backgroundColor: Color(0xFFC8D7FF),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           children: const <Widget>[
-            SizedBox(height: 80.0),
-            SizedBox(height: 120.0),
+            SizedBox(height: 230.0),
+            Center(child: Text("최애 공연 관리 앱", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold))),
+            SizedBox(height: 100.0),
             GoogleButton(),
             SizedBox(height: 5.0),
             AnonymousSigninButton(),
@@ -104,15 +106,18 @@ class GoogleButtonState extends State<GoogleButton>{
     return Column(
       children: [
         Container(
+          width: 200,
+          height: 60,
           child: RaisedButton(
             onPressed: () async{
               signInWithGoogle();
               Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => HomePage()));
             },
             child:Text("GOOGLE"),
-            color: Colors.redAccent[100],
+            color: Color(0xFFA0A0FF),
           ),
         ),
+        SizedBox(height: 10),
       ],
     );
   }
@@ -150,12 +155,15 @@ class AnonymousSigninButtonState extends State<AnonymousSigninButton>{
     return Column(
       children: [
         Container(
+          width: 200,
+          height: 60,
           child: RaisedButton(
             onPressed: () async{
               signInAnonymously();
               Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => HomePage()));
             },
             child:Text("GUEST"),
+            color: Color(0xFFFFBBC6),
           ),
         ),
       ],
