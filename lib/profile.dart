@@ -18,13 +18,12 @@ class ProfilePageState extends State<ProfilePage>{
         elevation: 0,
         automaticallyImplyLeading: false,
         title: Text('My Page', style: TextStyle(color:Colors.black)),
-        backgroundColor: Color(0xFFA9E6D2),
         actions: <Widget>[
           IconButton(
             icon: const Icon(
               Icons.exit_to_app,
               semanticLabel: 'logout',
-              color: Colors.green,
+              color: Colors.white60,
             ),
             onPressed: () {
               FirebaseAuth.instance.signOut();
@@ -48,7 +47,7 @@ class ProfilePageState extends State<ProfilePage>{
                   width: 380,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: Color(0xFFA9E6D2),
+                    color: Color(0xFFD2D2FF),
                     borderRadius: BorderRadius.all(
                       Radius.circular(20),
                     )
@@ -71,7 +70,7 @@ class ProfilePageState extends State<ProfilePage>{
                       Radius.circular(20),
                     ),
                   border: Border.all(
-                    color: Color(0xFFA9E6D2),
+                    color: Color(0xFFD2D2FF),
                     width: 2,
                   ),
                 ),
@@ -90,7 +89,7 @@ class ProfilePageState extends State<ProfilePage>{
                 width: 380,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                    color: Color(0xFFA9E6D2),
+                    color: Color(0xFFD2D2FF),
                     borderRadius: BorderRadius.all(
                       Radius.circular(20),
                     )
@@ -114,7 +113,7 @@ class ProfilePageState extends State<ProfilePage>{
                     Radius.circular(20),
                   ),
                   border: Border.all(
-                    color: Color(0xFFA9E6D2),
+                    color: Color(0xFFD2D2FF),
                     width: 2,
                   ),
                 ),

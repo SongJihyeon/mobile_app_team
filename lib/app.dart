@@ -8,6 +8,11 @@ class ShowApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Show information',
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          color: const Color(0xFFA0A0FF),
+        ),
+      ),
       home: const LoginPage(),
       initialRoute: '/login',
       onGenerateRoute: _getRoute,
