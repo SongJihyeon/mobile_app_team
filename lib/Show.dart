@@ -9,6 +9,9 @@ class Show {
   List<String> like;
   String image;
   String center;
+  String center_id;
+  String la;
+  String lo;
 
   Show({
     required this.id,
@@ -20,6 +23,9 @@ class Show {
     required this.like,
     required this.image,
     required this.center,
+    required this.center_id,
+    required this.la,
+    required this.lo,
   });
 }
 
