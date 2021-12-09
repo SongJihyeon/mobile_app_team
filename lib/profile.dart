@@ -17,7 +17,7 @@ class ProfilePageState extends State<ProfilePage>{
       appBar: AppBar(
         elevation: 0,
         automaticallyImplyLeading: false,
-        title: Text('My Page', style: TextStyle(color:Colors.black)),
+        title: Text('My Page'),
         actions: <Widget>[
           IconButton(
             icon: const Icon(
