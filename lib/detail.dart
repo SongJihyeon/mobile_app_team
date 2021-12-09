@@ -53,7 +53,7 @@ class DetailPage extends StatelessWidget{
                 Radius.circular(20),
                 ),
             border: Border.all(
-            color: Color(0xFFA5E1F2),
+            color: Color(0xFFD2D2FF),
             width: 5,
             ),
           ),
@@ -73,6 +73,9 @@ class DetailPage extends StatelessWidget{
                 // Googlemap(),
                  TextButton(
                    child: Text('공연장소 지도보기',style: TextStyle(fontSize: 18)),
+                     style: TextButton.styleFrom(
+                       primary: Color(0xFF8F7CEE),
+                     ),
                    onPressed: () {
                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Googlemap(index: index,)));
                    }
@@ -169,9 +172,9 @@ class _ReviewState extends State<Review>{
                  },
                  child: Row(
                    children: [
-                     Icon(Icons.send),
+                     Icon(Icons.send, color: Color(0xFF8F7CEE)),
                      SizedBox(width: 4),
-                     Text('SEND'),
+                     Text('SEND', style: TextStyle(color: Color(0xFF8F7CEE))),
                    ],
                  )
                )

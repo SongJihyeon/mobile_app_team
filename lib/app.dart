@@ -9,8 +9,9 @@ class ShowApp extends StatelessWidget {
     return MaterialApp(
       title: 'Show information',
       theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          color: const Color(0xFFA0A0FF),
+        fontFamily: 'cafe',
+        appBarTheme: const AppBarTheme(
+          color: Color(0xFFA0A0FF),
         ),
       ),
       home: const LoginPage(),
