@@ -3,8 +3,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'Show.dart';
 
 class Googlemap extends StatefulWidget{
+  final int index;
+  Googlemap({required this.index});
+
   @override
   State<StatefulWidget> createState() => _GooglemapState();
 }
@@ -22,17 +26,17 @@ class _GooglemapState extends State<Googlemap> {
     _markers.add(
       Marker(
         markerId: MarkerId('myInitialPosition'),
-        position: LatLng(37.382782, 127.1189054),
-        infoWindow: InfoWindow(title: 'My Position', snippet: 'Where an I?'),
+        position: LatLng(double.parse(shows[widget.index].la), double.parse(shows[widget.index].lo)),
+        infoWindow: InfoWindow(title: shows[widget.index].center, snippet: shows[widget.index].show_name),
       ),
     );
   }
 
 
-  CameraPosition _initialCameraPosition = CameraPosition(
-    target: LatLng(37.382782, 127.1189054),
-    zoom: 14,
-  );
+  // CameraPosition _initialCameraPosition = CameraPosition(
+  //   target: LatLng(double.parse(shows[widget.index].la), double.parse(shows[widget.index].lo)),
+  //   zoom: 14,
+  // );
 
 
   void _onMapCreated(GoogleMapController controller){
@@ -49,7 +53,10 @@ class _GooglemapState extends State<Googlemap> {
        children: <Widget>[
          GoogleMap(
            mapType: _googleMapType,
-           initialCameraPosition: _initialCameraPosition,
+           initialCameraPosition: CameraPosition(
+             target: LatLng(double.parse(shows[widget.index].la), double.parse(shows[widget.index].lo)),
+             zoom: 14,
+           ),
            onMapCreated: _onMapCreated,
             markers: _markers,
          ),
